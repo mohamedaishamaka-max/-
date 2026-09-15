@@ -1,1 +1,695 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شغف | منصة تعليم اللغة العربية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400..700&family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #1B2A3A;
+    --ink-2: #223a52;
+    --parchment: #F7F3E9;
+    --parchment-2: #FBF8F2;
+    --gold: #C8A046;
+    --gold-dim: #A9853A;
+    --teal: #2F6F6B;
+    --teal-dim: #244F4C;
+    --charcoal: #23262B;
+    --line: #E4DCC8;
+    --radius-card: 6px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--parchment);
+    color:var(--charcoal);
+    font-family:'Tajawal',sans-serif;
+    direction:rtl;
+    line-height:1.7;
+  }
+  h1,h2,h3,.kufi{
+    font-family:'Reem Kufi',sans-serif;
+    font-weight:700;
+    letter-spacing:0;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;cursor:pointer;border:none;}
+  ::selection{background:var(--gold);color:var(--ink);}
 
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--parchment-2);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    font-size:26px;color:var(--ink);
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;display:inline-block;}
+  nav.links{display:flex;gap:28px;font-size:15px;}
+  nav.links a{padding:6px 2px;border-bottom:2px solid transparent;transition:border-color .15s;}
+  nav.links a.active, nav.links a:hover{border-color:var(--gold);}
+  .nav-cta{display:flex;gap:10px;align-items:center;}
+  .btn{
+    padding:10px 20px;border-radius:3px;font-size:14.5px;font-weight:500;
+    display:inline-block;transition:transform .12s, opacity .12s;
+  }
+  .btn:active{transform:scale(.97);}
+  .btn-gold{background:var(--gold);color:var(--ink);}
+  .btn-gold:hover{background:var(--gold-dim);}
+  .btn-outline{border:1px solid var(--ink);color:var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--parchment-2);}
+  .btn-teal{background:var(--teal);color:#fff;}
+  .btn-teal:hover{background:var(--teal-dim);}
+  .btn-ghost{color:var(--ink);opacity:.75;}
+  .btn-ghost:hover{opacity:1;}
+  .menu-toggle{display:none;background:none;font-size:22px;color:var(--ink);}
+
+  main{max-width:1180px;margin:0 auto;padding:0 24px;}
+  section{padding:64px 0;}
+  .view{display:none;}
+  .view.active{display:block;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+    padding:80px 0 60px;
+  }
+  .hero-eyebrow{color:var(--teal);font-size:15px;margin-bottom:14px;}
+  .hero h1{font-size:76px;line-height:.95;color:var(--ink);margin:0 0 22px;}
+  .hero-rule{width:96px;height:3px;background:var(--gold);margin-bottom:22px;}
+  .hero p{font-size:18px;max-width:480px;color:#3c3c3c;margin-bottom:30px;}
+  .hero-actions{display:flex;gap:14px;}
+  .hero-art{
+    aspect-ratio:1/1;background:var(--ink);border-radius:6px;
+    position:relative;overflow:hidden;
+  }
+  .hero-art svg{position:absolute;inset:0;width:100%;height:100%;}
+
+  .stat-row{display:flex;gap:48px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:28px 0;margin-top:8px;}
+  .stat b{display:block;font-family:'Reem Kufi';font-size:34px;color:var(--ink);}
+  .stat span{font-size:14px;color:#666;}
+
+  /* ---------- Section titles ---------- */
+  .sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:36px;gap:20px;flex-wrap:wrap;}
+  .sec-head h2{font-size:38px;color:var(--ink);margin:0;}
+  .sec-head p{color:#5a5a5a;font-size:15.5px;max-width:420px;margin:8px 0 0;}
+
+  /* ---------- Course cards ---------- */
+  .course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .course-card{
+    background:var(--parchment-2);border:1px solid var(--line);border-radius:var(--radius-card);
+    padding:26px;display:flex;flex-direction:column;gap:14px;
+    transition:border-color .15s;
+  }
+  .course-card:hover{border-color:var(--gold);}
+  .course-level{font-size:12.5px;color:var(--teal);}
+  .course-card h3{font-size:22px;margin:0;color:var(--ink);}
+  .course-card p{font-size:14.5px;color:#555;margin:0;flex-grow:1;}
+  .course-meta{display:flex;justify-content:space-between;font-size:13px;color:#777;border-top:1px dashed var(--line);padding-top:12px;}
+  .course-card .btn{align-self:flex-start;}
+
+  /* ---------- Lesson / course detail ---------- */
+  .detail-grid{display:grid;grid-template-columns:2fr 1fr;gap:36px;align-items:start;}
+  .video-box{
+    aspect-ratio:16/9;background:var(--ink);border-radius:6px;
+    display:flex;align-items:center;justify-content:center;color:var(--parchment);
+    position:relative;
+  }
+  .play-btn{width:64px;height:64px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;}
+  .play-btn::before{content:"";border-style:solid;border-width:10px 0 10px 16px;border-color:transparent transparent transparent var(--ink);margin-right:-3px;}
+  .lesson-list{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid var(--line);}
+  .lesson-list li{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 4px;border-bottom:1px solid var(--line);font-size:15px;cursor:pointer;
+  }
+  .lesson-list li:hover{color:var(--teal);}
+  .lesson-list li.done .lesson-num{background:var(--teal);color:#fff;}
+  .lesson-num{
+    width:26px;height:26px;border-radius:50%;border:1px solid var(--ink);
+    display:inline-flex;align-items:center;justify-content:center;font-size:12px;margin-left:10px;
+  }
+  .side-card{background:var(--parchment-2);border:1px solid var(--line);border-radius:6px;padding:22px;margin-bottom:18px;}
+  .side-card h4{margin:0 0 10px;font-size:17px;color:var(--ink);}
+
+  /* ---------- Quiz ---------- */
+  .quiz-box{background:var(--parchment-2);border:1px solid var(--line);border-radius:6px;padding:32px;max-width:640px;}
+  .quiz-progress{font-size:13px;color:var(--teal);margin-bottom:10px;}
+  .quiz-q{font-size:20px;color:var(--ink);margin-bottom:22px;}
+  .quiz-opt{
+    display:block;width:100%;text-align:right;padding:14px 16px;margin-bottom:10px;
+    border:1px solid var(--line);border-radius:4px;background:#fff;font-size:15px;
+  }
+  .quiz-opt:hover{border-color:var(--gold);}
+  .quiz-opt.correct{border-color:var(--teal);background:#eaf3f2;}
+  .quiz-opt.wrong{border-color:#b5544a;background:#f7ecea;}
+  .quiz-result{font-size:18px;color:var(--ink);margin-top:18px;}
+
+  /* ---------- Live sessions ---------- */
+  .live-table{width:100%;border-collapse:collapse;}
+  .live-table th{
+    text-align:right;font-family:'Reem Kufi';font-weight:400;font-size:14px;color:var(--teal);
+    padding:12px 10px;border-bottom:2px solid var(--ink);
+  }
+  .live-table td{padding:16px 10px;border-bottom:1px solid var(--line);font-size:15px;}
+  .badge{font-size:12px;padding:4px 10px;border-radius:20px;background:var(--teal);color:#fff;}
+  .badge.soon{background:var(--gold);color:var(--ink);}
+
+  /* ---------- Teacher ---------- */
+  .teacher-wrap{display:grid;grid-template-columns:280px 1fr;gap:44px;align-items:start;}
+  .teacher-photo{aspect-ratio:4/5;background:var(--ink);border-radius:6px;position:relative;overflow:hidden;}
+  .teacher-photo svg{position:absolute;inset:0;width:100%;height:100%;}
+  .teacher-wrap h2{font-size:36px;margin:0 0 6px;color:var(--ink);}
+  .teacher-role{color:var(--teal);margin-bottom:20px;}
+  .teacher-wrap p{color:#444;max-width:560px;}
+
+  /* ---------- Pricing ---------- */
+  .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .plan{border:1px solid var(--line);border-radius:6px;padding:30px;background:var(--parchment-2);position:relative;}
+  .plan.featured{border-color:var(--gold);background:var(--ink);color:var(--parchment-2);}
+  .plan.featured .plan-price span{color:var(--parchment-2);}
+  .plan.featured ul li{border-color:rgba(255,255,255,.15);}
+  .plan-name{font-size:14px;color:var(--teal);margin-bottom:6px;}
+  .plan.featured .plan-name{color:var(--gold);}
+  .plan h3{font-size:26px;margin:0 0 16px;}
+  .plan-price{font-family:'Reem Kufi';font-size:40px;margin-bottom:20px;}
+  .plan-price span{font-family:'Tajawal';font-size:14px;color:#777;}
+  .plan ul{list-style:none;padding:0;margin:0 0 26px;}
+  .plan ul li{padding:9px 0;border-bottom:1px dashed var(--line);font-size:14.5px;}
+
+  /* ---------- Login ---------- */
+  .login-wrap{max-width:420px;margin:40px auto;background:var(--parchment-2);border:1px solid var(--line);border-radius:6px;padding:36px;}
+  .role-toggle{display:flex;border:1px solid var(--line);border-radius:4px;overflow:hidden;margin-bottom:22px;}
+  .role-toggle button{flex:1;padding:10px;background:#fff;font-size:14px;}
+  .role-toggle button.active{background:var(--ink);color:var(--parchment-2);}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13.5px;color:#555;margin-bottom:6px;}
+  .field input,.field select{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:4px;font-family:inherit;font-size:14.5px;background:#fff;}
+  .hint{font-size:12.5px;color:#888;margin-top:14px;}
+
+  /* ---------- Dashboards ---------- */
+  .dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;flex-wrap:wrap;gap:12px;}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:36px;}
+  .kpi{background:var(--parchment-2);border:1px solid var(--line);border-radius:6px;padding:20px;}
+  .kpi b{font-family:'Reem Kufi';font-size:30px;color:var(--ink);display:block;}
+  .kpi span{font-size:13px;color:#777;}
+  .admin-table{width:100%;border-collapse:collapse;margin-bottom:40px;}
+  .admin-table th{text-align:right;font-size:13px;color:var(--teal);padding:10px;border-bottom:2px solid var(--ink);}
+  .admin-table td{padding:12px 10px;border-bottom:1px solid var(--line);font-size:14.5px;}
+  .row-actions button{font-size:12.5px;padding:6px 12px;margin-left:6px;border-radius:3px;}
+  .status-pill{font-size:12px;padding:3px 10px;border-radius:12px;}
+  .status-pill.active{background:#e6f0ee;color:var(--teal);}
+  .status-pill.pending{background:#fbf1de;color:var(--gold-dim);}
+
+  .add-form{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap;}
+  .add-form input{flex:1;min-width:160px;padding:10px 12px;border:1px solid var(--line);border-radius:4px;font-family:inherit;}
+
+  footer{border-top:1px solid var(--line);padding:36px 24px;margin-top:60px;text-align:center;color:#888;font-size:13.5px;}
+
+  @media(max-width:880px){
+    nav.links{display:none;}
+    .menu-toggle{display:block;}
+    .hero{grid-template-columns:1fr;}
+    .hero-art{order:-1;aspect-ratio:16/9;}
+    .hero h1{font-size:52px;}
+    .course-grid{grid-template-columns:1fr 1fr;}
+    .detail-grid{grid-template-columns:1fr;}
+    .teacher-wrap{grid-template-columns:1fr;}
+    .plans{grid-template-columns:1fr;}
+    .kpis{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:560px){
+    .course-grid{grid-template-columns:1fr;}
+    .stat-row{gap:24px;flex-wrap:wrap;}
+    .hero h1{font-size:40px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#/home" class="logo kufi">شغف <span class="dot"></span></a>
+    <nav class="links" id="navLinks">
+      <a href="#/home" data-route="home">الرئيسية</a>
+      <a href="#/courses" data-route="courses">الكورسات</a>
+      <a href="#/live" data-route="live">البث المباشر</a>
+      <a href="#/teacher" data-route="teacher">الأستاذ</a>
+      <a href="#/pricing" data-route="pricing">الاشتراكات</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#/login" class="btn btn-outline" id="loginBtn">تسجيل الدخول</a>
+    </div>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- HOME -->
+  <section class="view active" id="view-home">
+    <div class="hero">
+      <div>
+        <div class="hero-eyebrow">منصة تعليم اللغة العربية</div>
+        <h1 class="kufi">شغف<br>باللغة</h1>
+        <div class="hero-rule"></div>
+        <p>مع الأستاذ محمد فريد، تعلّم قواعد العربية وأدبها وبلاغتها عبر دروس مصوّرة، تمارين تفاعلية، وجلسات بث مباشر تجمعك بالمعلّم مباشرة.</p>
+        <div class="hero-actions">
+          <a href="#/pricing" class="btn btn-gold">اشترك الآن</a>
+          <a href="#/courses" class="btn btn-outline">تصفّح الكورسات</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="400" fill="#1B2A3A"/>
+          <g stroke="#C8A046" stroke-width="1.4" fill="none" opacity="0.9">
+            <polygon points="200,60 300,140 300,260 200,340 100,260 100,140"/>
+            <polygon points="200,110 260,155 260,245 200,290 140,245 140,155"/>
+          </g>
+          <circle cx="200" cy="200" r="18" fill="#C8A046"/>
+          <g stroke="#2F6F6B" stroke-width="1" opacity="0.6">
+            <line x1="0" y1="200" x2="100" y2="200"/>
+            <line x1="300" y1="200" x2="400" y2="200"/>
+            <line x1="200" y1="0" x2="200" y2="60"/>
+            <line x1="200" y1="340" x2="200" y2="400"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><b>+18</b><span>كورس متكامل</span></div>
+      <div class="stat"><b>+120</b><span>درس مصوّر</span></div>
+      <div class="stat"><b>أسبوعياً</b><span>جلسة بث مباشر</span></div>
+      <div class="stat"><b>1</b><span>معلّم متخصص</span></div>
+    </div>
+
+    <section>
+      <div class="sec-head">
+        <div>
+          <h2>ابدأ من هنا</h2>
+          <p>مجموعة مختارة من الكورسات الأساسية لكل مستوى.</p>
+        </div>
+        <a href="#/courses" class="btn btn-ghost">كل الكورسات ←</a>
+      </div>
+      <div class="course-grid" id="homeCourseGrid"></div>
+    </section>
+  </section>
+
+  <!-- COURSES -->
+  <section class="view" id="view-courses">
+    <div class="sec-head">
+      <div>
+        <h2>الكورسات</h2>
+        <p>نحو، صرف، بلاغة، وأدب — دروس فيديو مع اختبارات تفاعلية بعد كل وحدة.</p>
+      </div>
+    </div>
+    <div class="course-grid" id="allCourseGrid"></div>
+  </section>
+
+  <!-- COURSE DETAIL -->
+  <section class="view" id="view-course-detail">
+    <div id="courseDetailContent"></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="view" id="view-quiz">
+    <div class="sec-head">
+      <div><h2>اختبار سريع</h2><p>اختر الإجابة الصحيحة للانتقال للسؤال التالي.</p></div>
+    </div>
+    <div id="quizContent"></div>
+  </section>
+
+  <!-- LIVE -->
+  <section class="view" id="view-live">
+    <div class="sec-head">
+      <div><h2>البث المباشر</h2><p>جلسات أسبوعية مباشرة مع الأستاذ محمد فريد للنقاش وحل الأسئلة.</p></div>
+    </div>
+    <table class="live-table">
+      <thead><tr><th>الجلسة</th><th>الموضوع</th><th>الموعد</th><th>الحالة</th><th></th></tr></thead>
+      <tbody id="liveTableBody"></tbody>
+    </table>
+  </section>
+
+  <!-- TEACHER -->
+  <section class="view" id="view-teacher">
+    <div class="teacher-wrap">
+      <div class="teacher-photo">
+        <svg viewBox="0 0 280 350" xmlns="http://www.w3.org/2000/svg">
+          <rect width="280" height="350" fill="#1B2A3A"/>
+          <circle cx="140" cy="130" r="55" fill="#2F6F6B"/>
+          <path d="M50 320 Q140 220 230 320 Z" fill="#2F6F6B"/>
+          <circle cx="140" cy="130" r="55" fill="none" stroke="#C8A046" stroke-width="2"/>
+        </svg>
+      </div>
+      <div>
+        <h2 class="kufi">الأستاذ محمد فريد</h2>
+        <div class="teacher-role">مؤسس منصة شغف · معلّم لغة عربية</div>
+        <p>يقدّم الأستاذ محمد فريد محتوى اللغة العربية بأسلوب مبسّط يجمع بين الشرح التقليدي والتفاعل الحديث، مع تركيز خاص على تثبيت القواعد عبر التطبيق العملي والمراجعة المستمرة.</p>
+        <p>يشرف الأستاذ محمد فريد بنفسه على محتوى كل كورس، ويتابع أسئلة الطلاب في جلسات البث المباشر أسبوعياً.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="view" id="view-pricing">
+    <div class="sec-head">
+      <div><h2>خطط الاشتراك</h2><p>اختر الخطة المناسبة لك، ويمكنك التغيير في أي وقت.</p></div>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-name">شهري</div>
+        <h3>الأساسية</h3>
+        <div class="plan-price">120<span> جنيه / شهرياً</span></div>
+        <ul>
+          <li>الوصول لكل الكورسات المسجّلة</li>
+          <li>اختبارات تفاعلية غير محدودة</li>
+          <li>دعم عبر الرسائل</li>
+        </ul>
+        <button class="btn btn-outline" onclick="subscribe('الأساسية')" style="width:100%">اشترك الآن</button>
+      </div>
+      <div class="plan featured">
+        <div class="plan-name">الأكثر طلباً</div>
+        <h3>شغف بلس</h3>
+        <div class="plan-price">300<span> جنيه / فصلياً</span></div>
+        <ul>
+          <li>كل مزايا الخطة الأساسية</li>
+          <li>حضور جلسات البث المباشر</li>
+          <li>متابعة تقدّم شخصية</li>
+        </ul>
+        <button class="btn btn-gold" onclick="subscribe('شغف بلس')" style="width:100%">اشترك الآن</button>
+      </div>
+      <div class="plan">
+        <div class="plan-name">سنوي</div>
+        <h3>الشاملة</h3>
+        <div class="plan-price">950<span> جنيه / سنوياً</span></div>
+        <ul>
+          <li>كل مزايا شغف بلس</li>
+          <li>شهادة إتمام لكل كورس</li>
+          <li>جلسة مراجعة فردية شهرياً</li>
+        </ul>
+        <button class="btn btn-outline" onclick="subscribe('الشاملة')" style="width:100%">اشترك الآن</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGIN -->
+  <section class="view" id="view-login">
+    <div class="login-wrap">
+      <h2 style="margin-top:0">تسجيل الدخول</h2>
+      <div class="role-toggle">
+        <button id="roleStudentBtn" class="active" onclick="setLoginRole('student')">طالب</button>
+        <button id="roleAdminBtn" onclick="setLoginRole('admin')">الإدارة</button>
+      </div>
+      <div class="field"><label>البريد الإلكتروني</label><input type="email" placeholder="name@example.com"></div>
+      <div class="field"><label>كلمة المرور</label><input type="password" placeholder="••••••••"></div>
+      <button class="btn btn-gold" style="width:100%" onclick="doLogin()">دخول</button>
+      <div class="hint">هذه نسخة تجريبية أولية — بيانات الدخول غير مطلوبة، اضغط دخول مباشرة لمعاينة لوحة الطالب أو الإدارة.</div>
+    </div>
+  </section>
+
+  <!-- STUDENT DASHBOARD -->
+  <section class="view" id="view-student">
+    <div class="dash-top">
+      <div><h2 style="margin:0">أهلاً بك 👋</h2><p style="margin:4px 0 0;color:#666">تابع تقدّمك في كورساتك</p></div>
+      <a href="#/courses" class="btn btn-teal">استكشف كورسات جديدة</a>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>3</b><span>كورسات مسجّل بها</span></div>
+      <div class="kpi"><b>%62</b><span>نسبة الإنجاز</span></div>
+      <div class="kpi"><b>8</b><span>اختبارات مكتملة</span></div>
+      <div class="kpi"><b>شغف بلس</b><span>باقتك الحالية</span></div>
+    </div>
+    <div class="sec-head"><div><h2 style="font-size:26px">كورساتي</h2></div></div>
+    <div class="course-grid" id="myCoursesGrid"></div>
+  </section>
+
+  <!-- ADMIN DASHBOARD -->
+  <section class="view" id="view-admin">
+    <div class="dash-top">
+      <div><h2 style="margin:0">لوحة الإدارة</h2><p style="margin:4px 0 0;color:#666">إدارة الكورسات، الطلاب، والاشتراكات</p></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b id="kpiCourses">0</b><span>إجمالي الكورسات</span></div>
+      <div class="kpi"><b>246</b><span>طالب مشترك</span></div>
+      <div class="kpi"><b>29,400</b><span>إيراد الشهر (جنيه)</span></div>
+      <div class="kpi"><b>4</b><span>جلسات بث هذا الأسبوع</span></div>
+    </div>
+
+    <div class="sec-head"><div><h2 style="font-size:24px">إدارة الكورسات</h2></div></div>
+    <div class="add-form">
+      <input id="newCourseTitle" placeholder="اسم الكورس الجديد">
+      <input id="newCourseLevel" placeholder="المستوى (مبتدئ / متوسط / متقدم)">
+      <button class="btn btn-gold" onclick="addCourse()">إضافة كورس</button>
+    </div>
+    <table class="admin-table">
+      <thead><tr><th>الكورس</th><th>المستوى</th><th>عدد الدروس</th><th></th></tr></thead>
+      <tbody id="adminCoursesBody"></tbody>
+    </table>
+
+    <div class="sec-head"><div><h2 style="font-size:24px">الاشتراكات الأخيرة</h2></div></div>
+    <table class="admin-table">
+      <thead><tr><th>الطالب</th><th>الخطة</th><th>تاريخ الاشتراك</th><th>الحالة</th></tr></thead>
+      <tbody id="adminSubsBody"></tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  منصة شغف — تعليم اللغة العربية · إشراف الأستاذ محمد فريد · هذه نسخة تجريبية أولية (Prototype)
+</footer>
+
+<script>
+/* ===================== Data (in-memory only) ===================== */
+let courses = [
+  {id:1, title:"أساسيات النحو العربي", level:"مبتدئ", lessons:12, desc:"الجملة الاسمية والفعلية، الإعراب الأساسي، وعلامات البناء."},
+  {id:2, title:"الصرف وبناء الكلمة", level:"متوسط", lessons:10, desc:"الميزان الصرفي، الجذر والوزن، والتحويلات بين الأبنية."},
+  {id:3, title:"البلاغة: البيان والبديع", level:"متقدم", lessons:9, desc:"التشبيه والاستعارة والكناية، وأبرز المحسّنات البديعية."},
+  {id:4, title:"مهارات الكتابة والتعبير", level:"مبتدئ", lessons:8, desc:"بناء الفقرة، الربط بين الجمل، وتحرير النصوص القصيرة."},
+  {id:5, title:"الأدب العربي: مدخل عام", level:"متوسط", lessons:11, desc:"أبرز العصور الأدبية وأعلامها من الجاهلية حتى العصر الحديث."},
+  {id:6, title:"الإملاء وعلامات الترقيم", level:"مبتدئ", lessons:7, desc:"قواعد الهمزات، والفرق بين التاء المربوطة والمفتوحة."},
+];
+
+let liveSessions = [
+  {topic:"مراجعة عامة على النحو", date:"الخميس 8:00 م", status:"upcoming"},
+  {topic:"ورشة تحليل نص أدبي", date:"السبت 6:00 م", status:"soon"},
+  {topic:"جلسة أسئلة وأجوبة مفتوحة", date:"الأحد 7:30 م", status:"upcoming"},
+];
+
+let subscriptions = [
+  {name:"سارة عبد الله", plan:"شغف بلس", date:"2026-09-01", status:"active"},
+  {name:"يوسف الشريف", plan:"الشاملة", date:"2026-08-24", status:"active"},
+  {name:"مريم حسن", plan:"الأساسية", date:"2026-09-10", status:"pending"},
+];
+
+let currentLoginRole = 'student';
+let quizIndex = 0;
+let quizScore = 0;
+const quizBank = [
+  {q:"ما إعراب الفاعل في الجملة الفعلية؟", options:["مرفوع","منصوب","مجرور"], correct:0},
+  {q:"أي مما يلي فعل ماضٍ؟", options:["يكتبُ","اكتبْ","كتبَ"], correct:2},
+  {q:"ما جمع كلمة «كتاب»؟", options:["كتب","كتّاب","كتيب"], correct:0},
+];
+
+/* ===================== Routing ===================== */
+function render(){
+  const hash = location.hash.replace('#/','') || 'home';
+  const [route, param] = hash.split('/');
+
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.querySelectorAll('nav.links a').forEach(a=>a.classList.remove('active'));
+
+  const routeToView = {
+    home:'view-home', courses:'view-courses', 'course':'view-course-detail',
+    quiz:'view-quiz', live:'view-live', teacher:'view-teacher', pricing:'view-pricing',
+    login:'view-login', student:'view-student', admin:'view-admin'
+  };
+  const viewId = routeToView[route] || 'view-home';
+  document.getElementById(viewId).classList.add('active');
+
+  const navLink = document.querySelector(`nav.links a[data-route="${route}"]`);
+  if(navLink) navLink.classList.add('active');
+
+  if(route==='course') renderCourseDetail(parseInt(param));
+  if(route==='quiz'){ quizIndex=0; quizScore=0; renderQuiz(); }
+
+  window.scrollTo(0,0);
+}
+window.addEventListener('hashchange', render);
+
+/* ===================== Course rendering ===================== */
+function courseCard(c){
+  return `
+    <div class="course-card">
+      <div class="course-level">${c.level}</div>
+      <h3>${c.title}</h3>
+      <p>${c.desc}</p>
+      <div class="course-meta"><span>${c.lessons} دروس</span><span>فيديو + اختبار</span></div>
+      <a href="#/course/${c.id}" class="btn btn-teal">ابدأ الكورس</a>
+    </div>`;
+}
+function renderCourseGrids(){
+  document.getElementById('homeCourseGrid').innerHTML = courses.slice(0,3).map(courseCard).join('');
+  document.getElementById('allCourseGrid').innerHTML = courses.map(courseCard).join('');
+  document.getElementById('myCoursesGrid').innerHTML = courses.slice(0,3).map(courseCard).join('');
+}
+
+function renderCourseDetail(id){
+  const c = courses.find(x=>x.id===id) || courses[0];
+  const lessonsHtml = Array.from({length:c.lessons}).map((_,i)=>`
+    <li class="${i<3?'done':''}">
+      <span><span class="lesson-num">${i+1}</span> الدرس ${i+1}: ${lessonName(c,i)}</span>
+      <span>${i<3?'✓ مكتمل':'12 د'}</span>
+    </li>`).join('');
+
+  document.getElementById('courseDetailContent').innerHTML = `
+    <div class="sec-head">
+      <div><h2>${c.title}</h2><p>${c.desc}</p></div>
+      <a href="#/quiz" class="btn btn-gold">ابدأ اختبار الكورس</a>
+    </div>
+    <div class="detail-grid">
+      <div>
+        <div class="video-box"><div class="play-btn"></div></div>
+        <ul class="lesson-list">${lessonsHtml}</ul>
+      </div>
+      <div>
+        <div class="side-card">
+          <h4>عن الكورس</h4>
+          <p style="margin:0;font-size:14.5px;color:#555">المستوى: ${c.level} · عدد الدروس: ${c.lessons}</p>
+        </div>
+        <div class="side-card">
+          <h4>المعلّم</h4>
+          <p style="margin:0;font-size:14.5px;color:#555">الأستاذ محمد فريد</p>
+        </div>
+      </div>
+    </div>`;
+}
+function lessonName(c,i){
+  const generic = ["مقدمة وتعريف","القاعدة الأساسية","أمثلة تطبيقية","تمرين مباشر","حالات خاصة","مراجعة سريعة"];
+  return generic[i % generic.length];
+}
+
+/* ===================== Quiz ===================== */
+function renderQuiz(){
+  if(quizIndex >= quizBank.length){
+    document.getElementById('quizContent').innerHTML = `
+      <div class="quiz-box">
+        <div class="quiz-result">نتيجتك: ${quizScore} من ${quizBank.length} 🎉</div>
+        <a href="#/courses" class="btn btn-teal" style="margin-top:16px;display:inline-block">العودة للكورسات</a>
+      </div>`;
+    return;
+  }
+  const q = quizBank[quizIndex];
+  document.getElementById('quizContent').innerHTML = `
+    <div class="quiz-box">
+      <div class="quiz-progress">سؤال ${quizIndex+1} من ${quizBank.length}</div>
+      <div class="quiz-q">${q.q}</div>
+      ${q.options.map((opt,i)=>`<button class="quiz-opt" onclick="answerQuiz(${i})">${opt}</button>`).join('')}
+    </div>`;
+}
+function answerQuiz(i){
+  const q = quizBank[quizIndex];
+  const buttons = document.querySelectorAll('.quiz-opt');
+  buttons.forEach((b,idx)=>{
+    b.disabled = true;
+    if(idx===q.correct) b.classList.add('correct');
+    else if(idx===i) b.classList.add('wrong');
+  });
+  if(i===q.correct) quizScore++;
+  setTimeout(()=>{ quizIndex++; renderQuiz(); }, 700);
+}
+
+/* ===================== Live sessions ===================== */
+function renderLive(){
+  document.getElementById('liveTableBody').innerHTML = liveSessions.map(s=>`
+    <tr>
+      <td>جلسة مباشرة</td>
+      <td>${s.topic}</td>
+      <td>${s.date}</td>
+      <td><span class="badge ${s.status==='soon'?'soon':''}">${s.status==='soon'?'قريباً':'مجدولة'}</span></td>
+      <td><button class="btn btn-outline" style="padding:6px 14px;font-size:13px" onclick="alert('تذكير مضاف لجلسة: ${s.topic}')">تذكير</button></td>
+    </tr>`).join('');
+}
+
+/* ===================== Login / dashboards ===================== */
+function setLoginRole(role){
+  currentLoginRole = role;
+  document.getElementById('roleStudentBtn').classList.toggle('active', role==='student');
+  document.getElementById('roleAdminBtn').classList.toggle('active', role==='admin');
+}
+function doLogin(){
+  location.hash = currentLoginRole === 'admin' ? '#/admin' : '#/student';
+  document.getElementById('loginBtn').textContent = currentLoginRole==='admin' ? 'الإدارة' : 'حسابي';
+  document.getElementById('loginBtn').href = currentLoginRole==='admin' ? '#/admin' : '#/student';
+}
+function subscribe(planName){
+  alert('تم تسجيل رغبتك في الاشتراك بخطة: ' + planName + ' — سيتم تفعيل بوابة الدفع لاحقاً.');
+}
+
+/* ===================== Admin actions ===================== */
+function renderAdmin(){
+  document.getElementById('kpiCourses').textContent = courses.length;
+  document.getElementById('adminCoursesBody').innerHTML = courses.map(c=>`
+    <tr>
+      <td>${c.title}</td>
+      <td>${c.level}</td>
+      <td>${c.lessons}</td>
+      <td class="row-actions">
+        <button class="btn btn-outline" onclick="removeCourse(${c.id})">حذف</button>
+      </td>
+    </tr>`).join('');
+
+  document.getElementById('adminSubsBody').innerHTML = subscriptions.map(s=>`
+    <tr>
+      <td>${s.name}</td>
+      <td>${s.plan}</td>
+      <td>${s.date}</td>
+      <td><span class="status-pill ${s.status}">${s.status==='active'?'فعّال':'قيد المراجعة'}</span></td>
+    </tr>`).join('');
+}
+function addCourse(){
+  const title = document.getElementById('newCourseTitle').value.trim();
+  const level = document.getElementById('newCourseLevel').value.trim() || 'مبتدئ';
+  if(!title) return;
+  courses.push({id:Date.now(), title, level, lessons:6, desc:'كورس جديد أضافته الإدارة.'});
+  document.getElementById('newCourseTitle').value='';
+  document.getElementById('newCourseLevel').value='';
+  renderAdmin(); renderCourseGrids();
+}
+function removeCourse(id){
+  courses = courses.filter(c=>c.id!==id);
+  renderAdmin(); renderCourseGrids();
+}
+
+/* ===================== Mobile menu ===================== */
+document.getElementById('menuToggle').addEventListener('click', ()=>{
+  const nav = document.getElementById('navLinks');
+  nav.style.display = nav.style.display==='flex' ? 'none' : 'flex';
+  nav.style.flexDirection = 'column';
+  nav.style.position='absolute';
+  nav.style.top='64px'; nav.style.right='0'; nav.style.left='0';
+  nav.style.background='var(--parchment-2)';
+  nav.style.padding='16px 24px';
+  nav.style.borderBottom='1px solid var(--line)';
+});
+
+/* ===================== Init ===================== */
+renderCourseGrids();
+renderLive();
+renderAdmin();
+render();
+</script>
+</body>
+</html>
